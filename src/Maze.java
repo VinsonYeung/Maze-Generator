@@ -2,7 +2,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class Map {
+public class Maze {
 
     private int width;
 
@@ -22,7 +22,7 @@ public class Map {
 
     private List<Square> potentialBranches;
 
-    public Map(int width, int height, int xStart, int yStart, int xEnd, int yEnd) {
+    public Maze(int width, int height, int xStart, int yStart, int xEnd, int yEnd) {
         this.width = width;
         this.height = height;
         this.xStart = xStart;
@@ -37,6 +37,26 @@ public class Map {
 
     public List<Square> getSquares() {
         return squares;
+    }
+
+    public int getxStart() {
+        return xStart;
+    }
+
+    public int getyStart() {
+        return yStart;
+    }
+
+    public int getxEnd() {
+        return xEnd;
+    }
+
+    public int getyEnd() {
+        return yEnd;
+    }
+
+    public Square[][] getArray() {
+        return array;
     }
 
     private void buildConnection(Square square1, Square square2) {
