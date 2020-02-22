@@ -68,6 +68,11 @@ public class Solver {
         x = square.getX();
         y = square.getY();
 
+        //Check if start is also the end
+        if (maze.getxStart() == maze.getxEnd() && maze.getyStart() == maze.getyEnd()) {
+            return;
+        }
+
         // At start
         if (square.getConnections().size() > 1) {
             nodes.add(maze.getArray()[x][y]);
