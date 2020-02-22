@@ -2,6 +2,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.input.MouseButton;
 import javafx.scene.paint.Color;
 
 import java.net.URL;
@@ -18,11 +19,7 @@ public class Controller implements Initializable {
 
     private Solver solver;
 
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        maze = new Maze(80, 60, 0, 0, 79, 59);
-        solver = new Solver(maze);
-        gc = canvas.getGraphicsContext2D();
+    private void update() {
         gc.setFill(Color.BLACK);
         gc.fillRect(0, 0, canvas.getWidth(), canvas.getHeight());
         gc.setFill(Color.WHITESMOKE);
@@ -50,5 +47,26 @@ public class Controller implements Initializable {
                     path.peek().getX() * 10 + 4, path.peek().getY() * 10 + 4);
             square = path.pop();
         }
+    }
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        maze = new Maze(80, 60, 0, 0, 79, 59);
+        solver = new Solver(maze);
+        gc = canvas.getGraphicsContext2D();
+        update();
+
+        canvas.setOnMouseClicked(event -> {
+            int x = (int) event.getX() / 10, y = (int) event.getY() / 10;
+            if (event.getButton() == MouseButton.PRIMARY) {
+                maze.setxEnd(x);
+                maze.setyEnd(y);
+            } else if (event.getButton() == MouseButton.SECONDARY) {
+                maze.setxStart(x);
+                maze.setyStart(y);
+            }
+            solver = new Solver(maze);
+            update();
+        });
     }
 }

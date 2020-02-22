@@ -59,6 +59,22 @@ public class Maze {
         return array;
     }
 
+    public void setxStart(int xStart) {
+        this.xStart = xStart;
+    }
+
+    public void setyStart(int yStart) {
+        this.yStart = yStart;
+    }
+
+    public void setxEnd(int xEnd) {
+        this.xEnd = xEnd;
+    }
+
+    public void setyEnd(int yEnd) {
+        this.yEnd = yEnd;
+    }
+
     private void buildConnection(Square square1, Square square2) {
         square1.addConnection(square2);
         square2.addConnection(square1);
