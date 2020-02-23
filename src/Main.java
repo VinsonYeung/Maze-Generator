@@ -12,7 +12,7 @@ public class Main extends Application {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("grid.fxml"));
         Parent root = loader.load();
         primaryStage.setTitle("Maze Generator");
-        primaryStage.setScene(new Scene(root, 800, 600));
+        primaryStage.setScene(new Scene(root, 800, 625));
         primaryStage.show();
     }
 

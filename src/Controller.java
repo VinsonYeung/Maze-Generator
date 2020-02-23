@@ -2,9 +2,14 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.control.MenuItem;
+import javafx.scene.control.RadioMenuItem;
+import javafx.scene.control.ToggleButton;
+import javafx.scene.control.ToggleGroup;
 import javafx.scene.input.MouseButton;
 import javafx.scene.paint.Color;
 
+import java.io.Serializable;
 import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.Stack;
@@ -13,11 +18,17 @@ public class Controller implements Initializable {
 
     @FXML private Canvas canvas ;
 
+    @FXML private MenuItem newMaze;
+
+    @FXML private ToggleGroup pathColourGroup;
+
     private GraphicsContext gc ;
 
     private Maze maze;
 
     private Solver solver;
+
+    private Color colour;
 
     private void update() {
         gc.setFill(Color.BLACK);
@@ -38,7 +49,7 @@ public class Controller implements Initializable {
             }
         }
 
-        gc.setStroke(Color.RED);
+        gc.setStroke(colour);
         gc.setLineWidth(1);
         Stack<Square> path = solver.getPath();
         Square square = path.pop();
@@ -54,6 +65,7 @@ public class Controller implements Initializable {
         maze = new Maze(80, 60, 0, 0, 79, 59);
         solver = new Solver(maze);
         gc = canvas.getGraphicsContext2D();
+        colour = Color.RED;
         update();
 
         canvas.setOnMouseClicked(event -> {
@@ -68,5 +80,32 @@ public class Controller implements Initializable {
             solver = new Solver(maze);
             update();
         });
+
+        newMaze.setOnAction(event -> {
+            maze = new Maze(80, 60, 0, 0, 79, 59);
+            solver = new Solver(maze);
+            update();
+        });
+
+        pathColourGroup.selectedToggleProperty().addListener(((observable, oldValue, newValue) -> {
+            // The old value switches to null before switching from null to new value
+            if (newValue == null) {
+                return;
+            }
+            switch (((RadioMenuItem) newValue).getId()) {
+                case "redPath":
+                    colour = Color.RED;
+                    break;
+                case "bluePath":
+                    colour = Color.BLUE;
+                    break;
+                case "hide":
+                    colour = Color.WHITESMOKE;
+                    break;
+            }
+            solver = new Solver(maze);
+            update();
+        }));
+
     }
 }

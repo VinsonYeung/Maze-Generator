@@ -1,17 +1,46 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
 <?import javafx.scene.canvas.*?>
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="Controller">
+<GridPane prefHeight="625.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller">
   <columnConstraints>
     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
   </columnConstraints>
   <rowConstraints>
-    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+    <RowConstraints />
+      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
   </rowConstraints>
    <children>
-      <Canvas fx:id="canvas" height="600.0" width="800.0" />
+      <Canvas id="canvas" fx:id="canvas" height="600.0" layoutY="25.0" width="800.0" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
+         <GridPane.margin>
+            <Insets />
+         </GridPane.margin></Canvas>
+      <MenuBar GridPane.halignment="CENTER" GridPane.valignment="TOP">
+        <menus>
+          <Menu mnemonicParsing="false" text="Options">
+            <items>
+              <MenuItem id="newMaze" fx:id="newMaze" mnemonicParsing="false" text="New Maze" />
+                  <Menu id="pathOptions" mnemonicParsing="false" text="Path Options">
+                     <items>
+                        <RadioMenuItem id="redPath" mnemonicParsing="false" selected="true" text="Red">
+                           <toggleGroup>
+                              <ToggleGroup fx:id="pathColourGroup" />
+                           </toggleGroup>
+                        </RadioMenuItem>
+                        <RadioMenuItem id="bluePath" mnemonicParsing="false" text="Blue" toggleGroup="$pathColourGroup" />
+                        <RadioMenuItem id="hide" mnemonicParsing="false" text="Hide" toggleGroup="$pathColourGroup" />
+                     </items>
+                  </Menu>
+            </items>
+          </Menu>
+        </menus>
+         <GridPane.margin>
+            <Insets />
+         </GridPane.margin>
+      </MenuBar>
    </children>
 </GridPane>
