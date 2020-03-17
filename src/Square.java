@@ -31,12 +31,12 @@ public class Square {
         return connections;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (!(o instanceof Square)) {
-            return false;
+    public boolean isConnected(Square square) {
+        for (Square s : connections) {
+            if (s == square) {
+                return true;
+            }
         }
-        Square target = (Square) o;
-        return this.xCoordinate == target.xCoordinate && this.yCoordinate == target.yCoordinate;
+        return false;
     }
 }

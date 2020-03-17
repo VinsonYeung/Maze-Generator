@@ -24,7 +24,7 @@
           <Menu mnemonicParsing="false" text="Options">
             <items>
               <MenuItem id="newMaze" fx:id="newMaze" mnemonicParsing="false" text="New Maze" />
-                  <Menu id="pathOptions" mnemonicParsing="false" text="Path Options">
+                  <Menu mnemonicParsing="false" text="Path Options">
                      <items>
                         <RadioMenuItem id="redPath" mnemonicParsing="false" selected="true" text="Red">
                            <toggleGroup>
@@ -32,7 +32,18 @@
                            </toggleGroup>
                         </RadioMenuItem>
                         <RadioMenuItem id="bluePath" mnemonicParsing="false" text="Blue" toggleGroup="$pathColourGroup" />
-                        <RadioMenuItem id="hide" mnemonicParsing="false" text="Hide" toggleGroup="$pathColourGroup" />
+                        <RadioMenuItem id="hidePath" mnemonicParsing="false" text="Hide" toggleGroup="$pathColourGroup" />
+                     </items>
+                  </Menu>
+                  <Menu mnemonicParsing="false" text="Wrong Turns">
+                     <items>
+                        <RadioMenuItem id="lineWrongTurns" mnemonicParsing="false" text="Lines">
+                           <toggleGroup>
+                              <ToggleGroup fx:id="wrongTurnGroup" />
+                           </toggleGroup>
+                        </RadioMenuItem>
+                        <RadioMenuItem id="circleWrongTurns" mnemonicParsing="false" selected="true" text="Circles" toggleGroup="$wrongTurnGroup" />
+                        <RadioMenuItem id="hideWrongTurns" mnemonicParsing="false" selected="true" text="Hide" toggleGroup="$wrongTurnGroup" />
                      </items>
                   </Menu>
             </items>

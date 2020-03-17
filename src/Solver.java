@@ -25,6 +25,10 @@ public class Solver {
         return path;
     }
 
+    public List<Square> getBlockList() {
+        return blockList;
+    }
+
     private Square pickConnection() {
         if (square.getConnections().size() == 1) {
             return square.getConnections().get(0);
